@@ -1,4 +1,4 @@
-name: yt-dlp
+name: yt-dlp-core20
 summary: A fork of youtube-dl with additional features and patches 
 description: |
       Based on youtube-dl 2021.06.06 commit/379f52a and 
@@ -7,17 +7,23 @@ description: |
 adopt-info: yt-dlp
 grade: stable 
 confinement: strict
-base: core22
+base: core20
 architectures:
   - build-on: amd64
 
 apps:
-  yt-dlp:
+  yt-dlp-core20:
     command: bin/yt-dlp
     plugs: [home, network, network-bind, removable-media]
 
 environment:
   "LD_LIBRARY_PATH": "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pulseaudio"
+
+slots:
+  yt-dlp-core20:
+    interface: content
+    content: plug20
+    read: [ / ]
 
 parts:
   yt-dlp:
